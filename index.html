@@ -1,0 +1,271 @@
+
+<html>
+<head>
+	<title>Nitish Kumar Upadhyay || Registration form validation</title>
+<style>
+*, *:after, *:before {
+	 box-sizing: border-box;
+}
+ body {
+	 font-family: "DM Sans", sans-serif;
+	 line-height: 1.5;
+	 background-color: #f1f3fb;
+	 padding: 0 2rem;
+	 background-image: linear-gradient(to right top, #052737, #004e5e, #007769, #009e54, #8ebe22);
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+}
+ img {
+	 max-width: 100%;
+	 display: block;
+}
+ input {
+	 appearance: none;
+	 border-radius: 0;
+}
+ .card {
+	 margin: 2rem auto;
+	 display: flex;
+	 flex-direction: column;
+	 width: 100%;
+	 max-width: 425px;
+	 background-color: #fff;
+	 border-radius: 10px;
+	 box-shadow: 0 10px 20px 0 rgba(153, 153, 153, .25);
+	 padding: 0.75rem;
+}
+ .card-image {
+	 border-radius: 8px;
+	 overflow: hidden;
+	 padding-bottom: 40%;
+	 background-image: url('image/bg.jpg');
+	 background-repeat: no-repeat;
+	 background-size: 100%;
+	 background-position: 0 5%;
+	 position: relative;
+}
+ .card-heading {
+	 position: absolute;
+	 left: 10%;
+	 top: 15%;
+	 right: 10%;
+	 font-size: 1.75rem;
+	 font-weight: 700;
+	 color: #735400;
+	 line-height: 1.222;
+}
+ .card-heading small {
+	 display: block;
+	 font-size: 0.75em;
+	 font-weight: 400;
+	 margin-top: 0.25em;
+}
+ .card-form {
+	 padding: 2rem 1rem 0;
+}
+ .input {
+	 display: flex;
+	 flex-direction: column-reverse;
+	 position: relative;
+	 padding-top: 1.5rem;
+}
+ .input + .input {
+	 margin-top: 1.5rem;
+}
+ .input-label {
+	 color: #8597a3;
+	 position: absolute;
+	 top: 1.5rem;
+	 transition: 0.25s ease;
+}
+ .input-field {
+	 border: 0;
+	 z-index: 1;
+	 background-color: transparent;
+	 border-bottom: 2px solid #eee;
+	 font: inherit;
+	 font-size: 1.125rem;
+	 padding: 0.25rem 0;
+}
+ .input-field:focus, .input-field:valid {
+	 outline: 0;
+	 border-bottom-color: #6658d3;
+}
+ .input-field:focus + .input-label, .input-field:valid + .input-label {
+	 color: #6658d3;
+	 transform: translateY(-1.5rem);
+}
+ .action {
+	 margin-top: 2rem;
+}
+ .action-button {
+	 font: inherit;
+	 font-size: 1.25rem;
+	 padding: 1em;
+	 width: 100%;
+	 font-weight: 500;
+	 background-color: #6658d3;
+	 border-radius: 6px;
+	 color: #fff;
+	 border: 0;
+}
+ .action-button:focus {
+	 outline: 0;
+}
+ .card-info {
+	 padding: 1rem 1rem;
+	 text-align: center;
+	 font-size: 0.875rem;
+	 color: #8597a3;
+}
+ .card-info a {
+	 display: block;
+	 color: #6658d3;
+	 text-decoration: none;
+}
+ .err{
+   
+    display:none;
+ }
+
+
+</style>
+</head>
+<body>
+<div class="container">
+	
+	<div class="card">
+		<div class="card-image">	
+			
+		</div>
+		<form class="card-form" onsubmit="return validate_data()">
+			<div class="input">
+				<input type="text" class="input-field" value="" id="name" required/>
+				<label class="input-label">Full name</label>
+                <label id="err_name" style="display: none;"></label>
+			</div>
+						<div class="input">
+				<input type="text" class="input-field" value="" id="email" required/>
+				<label class="input-label">Email</label>
+                <label id="err_email" style="display: none;"></label>
+			</div>
+            <div class="input">
+				<input type="text" class="input-field" value="" id="mobile" required/>
+				<label class="input-label">Mobile No.</label>
+                <label id="err_mobile" style="display: none;"></label>
+			</div>
+            <div class="input">
+				<input type="text" class="input-field" value="" id="dob" required/>
+				<label class="input-label">Date of Birth.</label>
+                <label id="err_dob" style="display: none;"></label>
+			</div>
+						<div class="input">
+				<input type="text" class="input-field" id="pass" required/>
+				<label class="input-label">Password</label>
+                <label id="err_pass" style="display: none;"></label>
+			</div>
+			<div class="action">
+				<button class="action-button">Register</button>
+			</div>
+		</form>
+		
+	</div>
+</div>
+
+<script>
+
+function validate_data(){
+    //name validation
+var  name=document.getElementById("name").value;
+var name_ptrn=/^[A-Za-z ]+$/gi;
+if(name_ptrn.test(name)){
+    let name_err=document.getElementById("err_name")
+name_err.style.display = "block";
+name_err.style.color = "green";
+name_err.innerHTML="Done! You entered a valid name.";
+   
+}else{
+let name_err=document.getElementById("err_name")
+name_err.style.display = "block";
+name_err.style.color = "red";
+name_err.innerHTML="Please Sir enter a valid name !";
+   return false;
+}
+
+ //email validation
+ var  email=document.getElementById("email").value;
+var email_ptrn=/^[A-z0-9._]{3,}@[A-z]{3,5}.[A-z]{3,5}$/gi;
+if(email_ptrn.test(email)){
+    let email_err=document.getElementById("err_email")
+email_err.style.display = "block";
+email_err.style.color = "green";
+email_err.innerHTML="Done! You entered a valid email.";
+  
+}else{
+let email_err=document.getElementById("err_email")
+email_err.style.display = "block";
+email_err.style.color = "red";
+email_err.innerHTML="Please Sir enter a valid email !";
+   return false;
+}
+
+
+ //mobile validation
+ var  mobile=document.getElementById("mobile").value;
+var mobile_ptrn=/^[0-9]{10,10}$/g;
+if(mobile_ptrn.test(mobile)){
+    let mobile_err=document.getElementById("err_mobile")
+mobile_err.style.display = "block";
+mobile_err.style.color = "green";
+mobile_err.innerHTML="Done! You entered a valid mobile no.";
+
+}else{
+let mobile_err=document.getElementById("err_mobile")
+mobile_err.style.display = "block";
+mobile_err.style.color = "red";
+mobile_err.innerHTML="Please Sir enter a valid mobile no.!";
+   return false;
+}
+
+ //dob validation
+ var  dob=document.getElementById("dob").value;
+var dob_ptrn=/^(?:0[1-9]|[12]\d|3[01])([\/])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/;
+if(dob_ptrn.test(dob)){
+    let dob_err=document.getElementById("err_dob")
+dob_err.style.display = "block";
+dob_err.style.color = "green";
+dob_err.innerHTML="Done! You entered a valid DOB .";
+  
+}else{
+let dob_err=document.getElementById("err_dob")
+dob_err.style.display = "block";
+dob_err.style.color = "red";
+dob_err.innerHTML="Please Sir enter a valid DOB : DD/MM/YYYY .!";
+   return false;
+}
+
+ //password validation
+ var  pass=document.getElementById("pass").value;
+var pass_ptrn=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+if(pass_ptrn.test(pass)){
+    let pass_err=document.getElementById("err_pass")
+pass_err.style.display = "block";
+pass_err.style.color = "green";
+pass_err.innerHTML="Done! You entered a valid password .";
+   return false;
+}else{
+let pass_err=document.getElementById("err_pass")
+pass_err.style.display = "block";
+pass_err.style.color = "red";
+pass_err.innerHTML="Please Sir enter a valid password .!";
+   return false;
+}
+
+
+}
+
+</script>
+</body>
+</html>
