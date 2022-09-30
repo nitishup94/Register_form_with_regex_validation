@@ -1,4 +1,4 @@
-# Register_form_with_regex_validation
+# Register form with regex validation
 Validation of registration form  using regex pattern in Javascript.
 
 Full Name Regex :  /^[A-Za-z ]+$/gi
